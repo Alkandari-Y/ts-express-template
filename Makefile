@@ -8,3 +8,6 @@ add_db_prisma:
 .PHONY: prisma_init
 prisma_init:
 	npx prisma init
+
+prisma_migrate: prisma/schema.prisma
+	npx prisma migrate dev --name init

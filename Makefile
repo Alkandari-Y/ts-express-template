@@ -11,3 +11,7 @@ prisma_init:
 
 prisma_migrate: prisma/schema.prisma
 	npx prisma migrate dev --name init
+
+.PHONY: prisma_studio
+prisma_studio:
+	npx prisma studio

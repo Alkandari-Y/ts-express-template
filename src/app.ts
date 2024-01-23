@@ -1,10 +1,14 @@
-import express from "express";
 import cors from "cors";
-import morgan from "morgan";
-import compression from "compression";
 import cookieParser from "cookie-parser";
-import { errorHandler, notFound } from "./middlewares/errors";
+import compression from "compression";
+import express from "express";
+import morgan from "morgan";
+import passport from "passport"; 
+
+
+import { errorHandler, notFound } from "./lib/middlewares/errors";
 import router from "./routes";
+import { jwtStrategy } from "./lib/middlewares/auth";
 
 const app = express();
 
@@ -14,6 +18,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(compression());
 app.use(cookieParser());
+app.use(passport.initialize())
+
+passport.use('jwt', jwtStrategy)
 
 app.use("/api", router);
 

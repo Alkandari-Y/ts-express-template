@@ -1,1 +1,0 @@
-export { isJWTAuthenticated } from "./isJWTAuthenticated";

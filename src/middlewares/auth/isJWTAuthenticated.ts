@@ -4,7 +4,11 @@ import { Request, Response, NextFunction } from "express";
 
 import { jwt as jwtConfig } from "../../config";
 
-export default async (req: Request, res: Response, next: NextFunction) => {
+export async function isJWTAuthenticated(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   const bearer = req.headers.authorization;
 
   if (!bearer) {
@@ -30,4 +34,4 @@ export default async (req: Request, res: Response, next: NextFunction) => {
   } catch (error) {
     return next({ status: StatusCodes.UNAUTHORIZED, message: "Invalid token" });
   }
-};
+}

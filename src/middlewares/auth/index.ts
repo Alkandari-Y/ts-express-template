@@ -1,3 +1,1 @@
-import isJWTAuthenticated from "./isJWTAuthenticated";
-
-export { isJWTAuthenticated };
+export { isJWTAuthenticated } from "./isJWTAuthenticated";

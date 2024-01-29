@@ -22,7 +22,7 @@ app.use(passport.initialize());
 passport.use("jwt", jwtStrategy);
 passport.use("local", localStrategy);
 
-app.use("/api", router);
+app.use(router);
 
 app.use(notFound);
 app.use(errorHandler);

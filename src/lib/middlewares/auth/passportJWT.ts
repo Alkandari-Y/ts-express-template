@@ -1,7 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 import { Strategy, ExtractJwt } from "passport-jwt";
 
-import { ExpressError } from "../../errors";
+import { ExpressError } from "../../../lib/errors";
 
 export const jwtStrategy = new Strategy(
   {

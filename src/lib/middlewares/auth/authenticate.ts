@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
-import { ExpressError } from "lib/errors";
+import { ExpressError } from "../../../lib/errors";
 import { authenticate } from "passport";
 
 export const passportAuthenticator =

@@ -1,8 +1,7 @@
 import { StatusCodes } from "http-status-codes";
 import { Strategy } from "passport-local";
-import bcrypt from "bcrypt";
-
-import { ExpressError } from "lib/errors";
+import { comparePassword } from "../../utils/auth";
+import { ExpressError } from "../../../lib/errors";
 
 export const localStrategy = new Strategy(
   { usernameField: "username" },
@@ -11,7 +10,7 @@ export const localStrategy = new Strategy(
       const user = await { username: username || "test", password: "password" }; // implement data fetching
 
       const passwordsMatch = user
-        ? await bcrypt.compare(password, user.password)
+        ? await comparePassword(password, user.password)
         : false;
 
       if (passwordsMatch) return done(null, user);

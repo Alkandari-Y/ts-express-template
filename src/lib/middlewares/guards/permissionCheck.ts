@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
+import type { Request, Response, NextFunction } from "express";
 
 export type PermissionCondition = (req: Request) => boolean;
 
@@ -25,7 +25,7 @@ export type PermissionCheck = (
 
 export const permissionCheck: PermissionCheck =
   (condition: PermissionCondition, options?: PermissionCheckOptions) =>
-    (req: Request, res: Response, next: NextFunction) => {
+  (req: Request, res: Response, next: NextFunction) => {
     if (condition(req)) {
       return res
         .status(options?.statusCode || StatusCodes.UNAUTHORIZED)

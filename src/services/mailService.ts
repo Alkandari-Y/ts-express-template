@@ -1,5 +1,5 @@
-import { createTransport } from "nodemailer";
 import type { Transport } from "nodemailer";
+import { createTransport } from "nodemailer";
 import { mail as mailConfig } from "../config";
 
 export type MailOptions = {

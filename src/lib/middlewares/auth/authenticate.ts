@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
-import { ExpressError } from "../../../lib/errors";
+import { ApiError, UnauthorizedError } from "../../../lib/errors";
 import { authenticate } from "passport";
 
 export const passportAuthenticator =
@@ -9,33 +9,20 @@ export const passportAuthenticator =
     authenticate(
       loginType,
       (
-        err: ExpressError,
+        err: ApiError,
         user: Express.User,
         info?: { type: "refresh" | "access" }
       ) => {
-        if (err || !user)
-          return next({
-            status: StatusCodes.UNAUTHORIZED,
-            name: "Authentication Error",
-            message: "Invalid Credentials",
-          });
+        if (err || !user) return next(new UnauthorizedError());
 
         if (refresh && info?.hasOwnProperty("type") && info.type === "access") {
-          return next({
-            status: StatusCodes.UNAUTHORIZED,
-            name: "Authentication Error",
-            message: "Invalid refresh token",
-          });
+          return next(new UnauthorizedError("Invalid refresh token"));
         } else if (
           !refresh &&
           info?.hasOwnProperty("type") &&
           info.type === "refresh"
         ) {
-          return next({
-            status: StatusCodes.UNAUTHORIZED,
-            name: "Authentication Error",
-            message: "Invalid access token",
-          });
+          return next(new UnauthorizedError("Invalid access token"));
         }
 
         req.user = user;

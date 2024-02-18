@@ -1,7 +1,6 @@
-import { StatusCodes } from "http-status-codes";
 import { Strategy, ExtractJwt } from "passport-jwt";
 
-import { ExpressError } from "../../../lib/errors";
+import { UnauthorizedError } from "../../../lib/errors";
 
 export const jwtStrategy = new Strategy(
   {
@@ -10,7 +9,7 @@ export const jwtStrategy = new Strategy(
   },
   async (jwtPayload, done) => {
     if (Date.now() > jwtPayload.exp * 1000) {
-      return done(new ExpressError("Invalid token", StatusCodes.UNAUTHORIZED));
+      return done(new UnauthorizedError("Expired token"));
     }
     try {
       const user = { username: "test" }; // implement data fetching

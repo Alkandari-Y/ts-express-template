@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
 
-import { ExpressError } from "../../lib/errors";
+import { ApiError } from "../../lib/errors";
 
 export const userLogin = async (
   req: Request,

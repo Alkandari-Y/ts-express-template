@@ -1,7 +1,6 @@
-import { StatusCodes } from "http-status-codes";
 import { Strategy } from "passport-local";
 import { comparePassword } from "../../utils/auth";
-import { ExpressError } from "../../../lib/errors";
+import { UnauthorizedError } from "../../../lib/errors";
 
 export const localStrategy = new Strategy(
   { usernameField: "username" },
@@ -15,9 +14,7 @@ export const localStrategy = new Strategy(
 
       if (passwordsMatch) return done(null, user);
 
-      return done(
-        new ExpressError("Invalid Credentials", StatusCodes.UNAUTHORIZED)
-      );
+      return done(new UnauthorizedError());
     } catch (error) {
       return done(error);
     }

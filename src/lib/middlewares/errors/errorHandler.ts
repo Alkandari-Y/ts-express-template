@@ -1,9 +1,9 @@
 import { StatusCodes } from "http-status-codes";
 import type { Request, Response, NextFunction } from "express";
-import { IError } from "lib/errors";
+import type { IApiError } from "lib/errors";
 
 export function errorHandler(
-  err: IError,
+  err: IApiError,
   req: Request,
   res: Response,
   next: NextFunction

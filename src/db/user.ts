@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const userSchema = z.object({
+const userRegisterSchema = z.object({
   body: z.object({
     username: z.string({
       required_error: "Username is required",
@@ -15,6 +15,6 @@ const userSchema = z.object({
   //   query: z.object({}).strict({ message: "No query params" }), // strictly no query params
 });
 
-type UserSchema = z.infer<typeof userSchema>;
+export type UserRegisterSchema = z.infer<typeof userRegisterSchema>;
 
-export { userSchema, UserSchema };
+export { userRegisterSchema };

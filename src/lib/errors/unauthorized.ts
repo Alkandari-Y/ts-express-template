@@ -1,6 +1,6 @@
-import type { IApiError } from "./apiError";
+import type { IApiError } from "./base";
 import { StatusCodes } from "http-status-codes";
-import { ApiError } from "./apiError";
+import { ApiError } from "./base";
 
 // Used from when credentials are invalid
 // or request lacks correct credentials

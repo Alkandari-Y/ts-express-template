@@ -1,6 +1,6 @@
 import { StatusCodes } from "http-status-codes";
-import { ApiError } from "./apiError";
-import type { IApiError, ErrorArrayType } from "./apiError";
+import { ApiError } from "./base";
+import type { IApiError, ErrorArrayType } from "./base";
 
 // Used from when request is invalid
 // or does not pass schema validation
